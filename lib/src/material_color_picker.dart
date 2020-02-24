@@ -63,7 +63,7 @@ class _MaterialColorPickerState extends State<MaterialColorPicker> {
     if (widget.colors != null) _colors = widget.colors;
 
     Color shadeColor = widget.selectedColor ?? _defaultValue;
-    ColorSwatch mainColor = _findMainColor(shadeColor);
+    ColorSwatch mainColor = _findMainColor(shadeColor); // this fails!
 
     if (mainColor == null) {
       mainColor = _colors[0];
@@ -87,6 +87,7 @@ class _MaterialColorPickerState extends State<MaterialColorPicker> {
   }
 
   bool _isShadeOfMain(ColorSwatch mainColor, Color shadeColor) {
+    if(mainColor.value == shadeColor.value) return true;
     for (final shade in _getMaterialColorShades(mainColor)) {
       if (shade == shadeColor) return true;
     }
